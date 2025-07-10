@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -21,7 +20,6 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-
     // Simple validation - in real app this would be backend validation
     if (username === 'login' && password === '123') {
       onLogin(username);
@@ -29,6 +27,10 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
     } else {
       setError('Invalid credentials. Use "login" and "123"');
     }
+  };
+
+  const navigateToAdminLogin = () => {
+    navigate('/admin');
   };
 
   return (
@@ -54,7 +56,6 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
               />
             </div>
           </div>
-
           <div className="space-y-2">
             <Label htmlFor="password" className="text-slate-300">Password</Label>
             <div className="relative">
@@ -77,25 +78,28 @@ const LoginForm = ({ onLogin }: LoginFormProps) => {
               </button>
             </div>
           </div>
-
           {error && (
             <div className="text-red-400 text-sm text-center bg-red-500/10 p-2 rounded">
               {error}
             </div>
           )}
-
           <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
             Sign In
           </Button>
+          <Button
+            type="button"
+            onClick={navigateToAdminLogin}
+            className="w-full bg-gray-600 hover:bg-gray-700 text-white"
+          >
+            Admin Login
+          </Button>
         </form>
-
         <div className="text-center text-slate-400 text-sm">
           Don't have an account?{' '}
           <Link to="/register" className="text-blue-400 hover:text-blue-300 font-medium">
             Sign up here
           </Link>
         </div>
-
         <div className="text-center text-xs text-slate-500">
           Demo credentials: username "login", password "123"
         </div>
