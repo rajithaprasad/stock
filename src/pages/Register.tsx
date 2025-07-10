@@ -1,0 +1,31 @@
+
+import { TrendingUp } from "lucide-react";
+import { Link } from "react-router-dom";
+import RegisterForm from "@/components/auth/RegisterForm";
+
+interface RegisterProps {
+  onRegister: (username: string) => void;
+}
+
+const Register = ({ onRegister }: RegisterProps) => {
+  return (
+    <div className="min-h-screen bg-slate-900 text-white">
+      {/* Header */}
+      <header className="border-b border-slate-800 bg-slate-900/95 backdrop-blur supports-[backdrop-filter]:bg-slate-900/60">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <Link to="/" className="flex items-center space-x-2">
+            <TrendingUp className="h-8 w-8 text-blue-500" />
+            <span className="text-2xl font-bold">BreakoutEdge</span>
+          </Link>
+        </div>
+      </header>
+
+      {/* Register Form */}
+      <div className="flex items-center justify-center px-4 py-12">
+        <RegisterForm onRegister={onRegister} />
+      </div>
+    </div>
+  );
+};
+
+export default Register;
